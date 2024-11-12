@@ -20,7 +20,11 @@ ffmpeg -i "$input_file" -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv
 # Check if the command was successful
 if [ $? -eq 0 ]; then
   echo "Video processed successfully. Saved as $output_file"
+  # Delete the original file
+  rm "$input_file"
+  echo "Original file $input_file has been deleted."
 else
   echo "An error occurred during video processing."
   exit 1
 fi
+
